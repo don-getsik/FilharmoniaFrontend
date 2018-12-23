@@ -38,7 +38,7 @@ export class BudgetEditComponent implements OnInit {
     });
   }
 
-  updateTransaction(id: number, sum: string, amount: string, title: string, details: string, date: string) {
-    this.bs.editTransaction(id, parseFloat(sum), parseFloat(amount), title, details, new Date(date));
+  updateTransaction(sum: string, amount: string, title: string, details: string, date: string) {
+    this.bs.editTransaction(this.transaction.id, parseFloat(sum), parseFloat(amount), title, details, new Date(date));
   }
 }

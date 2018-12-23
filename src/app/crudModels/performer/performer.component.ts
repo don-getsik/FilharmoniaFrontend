@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PERFORMERS} from '../../_mock/performer_mock';
+import {Performer} from '../../_models/performer';
+import {PerformerService} from '../../crudServices/performer.service';
 
 @Component({
   selector: 'app-performer',
@@ -8,10 +9,14 @@ import {PERFORMERS} from '../../_mock/performer_mock';
 })
 export class PerformerComponent implements OnInit {
 
-  permormers = PERFORMERS;
-  constructor() { }
+  performers: Performer[];
+  constructor(private ps: PerformerService) { }
 
   ngOnInit() {
+    this.performers = this.ps.getPerformers();
   }
 
+  deletePerformer(performer: Performer) {
+    this.ps.deletePerformer(performer);
+  }
 }

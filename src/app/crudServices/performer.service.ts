@@ -18,7 +18,7 @@ export class PerformerService {
     this.performers.push(p);
   }
 
-  editPerformer(id: number, cost: number, details: string) {
+  editPerformer(id: number, details: string, cost: number) {
     this.performers = this.performers.filter(e => e !== this.performers.find(e => e.id === id));
     let p: Performer = {id: id, cost: cost, details: details};
     this.performers.push (p);

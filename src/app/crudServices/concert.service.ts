@@ -16,15 +16,15 @@ export class ConcertService {
 
   concerts: Concert[] = CONCERTS;
 
-  addConcert(performer: Performer, title: string, organizationCosts: number, date: Date, ticketCosts: number) {
-    let c: Concert = {id: CONCERTS.length, performers: performer, concertRoom: CONCERTROOM, title: title,
+  addConcert(performer: Performer, title: string, organizationCosts: number, ticketCosts: number, date: Date) {
+    let c: Concert = {id: CONCERTS.length, performer: performer, concertRoom: CONCERTROOM, title: title,
       organizationCosts: organizationCosts, date: date, ticketCosts:ticketCosts};
     this.concerts.push(c);
   }
 
-  editConcert(id: number, performer: Performer, title: string, organizationCosts: number, date: Date, ticketCosts: number) {
+  editConcert(id: number, performer: Performer, title: string, organizationCosts: number, ticketCosts: number, date: Date) {
     this.concerts = this.concerts.filter(e => e !== this.concerts.find(e => e.id === id));
-    let c: Concert = {id: id, performers: performer, concertRoom: CONCERTROOM, title: title,
+    let c: Concert = {id: id, performer: performer, concertRoom: CONCERTROOM, title: title,
       organizationCosts: organizationCosts, date: date, ticketCosts:ticketCosts};
     this.concerts.push (c);
   }

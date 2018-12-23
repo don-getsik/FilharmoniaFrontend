@@ -34,8 +34,6 @@ import { PerformerAddComponent } from './crudModels/performer/performer-add/perf
 import { PerformerEditComponent } from './crudModels/performer/performer-edit/performer-edit.component';
 import { PieceOfMusicAddComponent } from './crudModels/piece-of-music/piece-of-music-add/piece-of-music-add.component';
 import { PieceOfMusicEditComponent } from './crudModels/piece-of-music/piece-of-music-edit/piece-of-music-edit.component';
-import { TicketAddComponent } from './crudModels/ticket/ticket-add/ticket-add.component';
-import { TicketEditComponent } from './crudModels/ticket/ticket-edit/ticket-edit.component';
 import { UserAddComponent } from './crudModels/user/user-add/user-add.component';
 import { UserEditComponent } from './crudModels/user/user-edit/user-edit.component';
 
@@ -71,8 +69,6 @@ import { UserEditComponent } from './crudModels/user/user-edit/user-edit.compone
         PerformerEditComponent,
         PieceOfMusicAddComponent,
         PieceOfMusicEditComponent,
-        TicketAddComponent,
-        TicketEditComponent,
         UserAddComponent,
         UserEditComponent
     ],

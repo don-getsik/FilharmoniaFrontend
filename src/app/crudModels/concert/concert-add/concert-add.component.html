@@ -1,3 +1,58 @@
-<p>
-  concert-add works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Wykonawca</label>
+        <select class="form-control" formControlName="performer" #performer>
+          <option *ngFor="let perf of getPerformers()" [ngValue]="perf">{{perf.details}}</option>
+        </select>
+      </div>
+      <div *ngIf="angForm.controls['performer'].invalid && (angForm.controls['performer'].dirty || angForm.controls['performer'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Wykonawca jest wymagany</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Tytuł</label>
+        <input type="text" class="form-control" formControlName="title" #title/>
+      </div>
+      <div *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Tytuł jest wymagany</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Koszty organizacji</label>
+        <input type="number" class="form-control" formControlName="organizationCosts" #organizationCosts/>
+      </div>
+      <div *ngIf="angForm.controls['organizationCosts'].invalid && (angForm.controls['organizationCosts'].dirty || angForm.controls['organizationCosts'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Koszt organizacji jest wymagany</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Cena biletu</label>
+        <input type="number" class="form-control" formControlName="ticketCosts" #ticketCosts/>
+      </div>
+      <div *ngIf="angForm.controls['ticketCosts'].invalid && (angForm.controls['ticketCosts'].dirty || angForm.controls['ticketCosts'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Cena biletu jest wymagana</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Data</label>
+        <input type="date" class="form-control" formControlName="date" #date/>
+      </div>
+      <div *ngIf="angForm.controls['date'].invalid && (angForm.controls['date'].dirty || angForm.controls['date'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Data jest wymagana</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addConcert(performer.value, title.value, organizationCosts.value, ticketCosts.value, date.value)"
+                [disabled]="angForm.invalid"
+                class="btn btn-primary">Zapisz</button>
+      </div>
+    </form>
+  </div>
+</div>

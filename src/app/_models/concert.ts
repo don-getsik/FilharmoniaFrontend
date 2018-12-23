@@ -3,7 +3,7 @@ import {ConcertRoom} from './concertRoom';
 
 export class Concert {
   id: number;
-  performers: Performer;
+  performer: Performer;
   concertRoom: ConcertRoom;
   date: Date;
   title: string;

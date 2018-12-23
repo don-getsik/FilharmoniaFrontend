@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DISCOUNTS} from '../../_mock/discount_mock';
+import {Discount} from '../../_models/discount';
+import {DiscountService} from '../../crudServices/discount.service';
 
 @Component({
   selector: 'app-discount',
@@ -8,11 +10,15 @@ import {DISCOUNTS} from '../../_mock/discount_mock';
 })
 export class DiscountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ds: DiscountService) { }
 
-  discounts = DISCOUNTS;
+  discounts: Discount[];
 
   ngOnInit() {
+    this.discounts = this.ds.getDiscounts();
   }
 
+  deleteDiscount(discount: Discount) {
+    this.ds.deleteDiscount(discount);
+  }
 }

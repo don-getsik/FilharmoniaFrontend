@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CONCERTS} from '../../_mock/concert_mock';
+import {Concert} from '../../_models/concert';
+import {ConcertService} from '../../crudServices/concert.service';
 
 @Component({
   selector: 'app-concert',
@@ -8,10 +10,15 @@ import {CONCERTS} from '../../_mock/concert_mock';
 })
 export class ConcertComponent implements OnInit {
 
-  concerts = CONCERTS;
-  constructor() { }
+  concerts: Concert[];
+  constructor(private cs: ConcertService) { }
 
   ngOnInit() {
+    this.concerts = this.cs.getConcerts();
+  }
+
+  deleteConcert(c: Concert) {
+    this.cs.deleteConcert(c);
   }
 
 }

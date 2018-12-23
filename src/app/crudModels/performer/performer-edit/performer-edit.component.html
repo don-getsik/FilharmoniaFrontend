@@ -1,3 +1,30 @@
-<p>
-  performer-edit works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Nazwa wykonawcy</label>
+        <input type="text" class="form-control" formControlName="details" #details [(ngModel)] = "performer.details" />
+      </div>
+      <div *ngIf="angForm.controls['details'].invalid && (angForm.controls['details'].dirty || angForm.controls['details'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Nazwa wykonawcy jest wymagana</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Koszt wykonawcy</label>
+        <input type="number" class="form-control" formControlName="cost" #cost [(ngModel)] = "performer.cost" />
+      </div>
+      <div *ngIf="angForm.controls['cost'].invalid && (angForm.controls['cost'].dirty || angForm.controls['cost'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Koszt wykonawcy jest wymagany</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button (click)="updatePerformer(details.value, cost.value)"
+                [disabled]="angForm.invalid"
+                class="btn btn-primary">Zapisz zmiany</button>
+      </div>
+    </form>
+  </div>
+</div>

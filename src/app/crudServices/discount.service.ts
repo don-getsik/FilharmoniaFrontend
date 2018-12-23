@@ -13,13 +13,13 @@ export class DiscountService {
   discounts: Discount[] = DISCOUNTS;
 
   addDiscount(title: string, precentage: number) {
-    let d: Discount = {id: DISCOUNTS.length, title: title, precentage: precentage};
+    let d: Discount = {id: DISCOUNTS.length, title: title, percentage: precentage};
     this.discounts.push(d);
   }
 
   editDiscount(id: number, title: string, precentage: number) {
     this.discounts = this.discounts.filter(e => e !== this.discounts.find(e => e.id === id));
-    let d: Discount = {id: id, title: title, precentage: precentage};
+    let d: Discount = {id: id, title: title, percentage: precentage};
     this.discounts.push (d);
   }
 

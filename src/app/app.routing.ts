@@ -23,8 +23,6 @@ import {PerformerAddComponent} from './crudModels/performer/performer-add/perfor
 import {PerformerEditComponent} from './crudModels/performer/performer-edit/performer-edit.component';
 import {PieceOfMusicEditComponent} from './crudModels/piece-of-music/piece-of-music-edit/piece-of-music-edit.component';
 import {PieceOfMusicAddComponent} from './crudModels/piece-of-music/piece-of-music-add/piece-of-music-add.component';
-import {TicketEditComponent} from './crudModels/ticket/ticket-edit/ticket-edit.component';
-import {TicketAddComponent} from './crudModels/ticket/ticket-add/ticket-add.component';
 import {UserEditComponent} from './crudModels/user/user-edit/user-edit.component';
 import {UserAddComponent} from './crudModels/user/user-add/user-add.component';
 
@@ -57,8 +55,6 @@ const appRoutes: Routes = [
   {path: 'manage/Performer/add', component: PerformerAddComponent},
   {path: 'manage/PieceOfMusic/:id', component: PieceOfMusicEditComponent},
   {path: 'manage/PieceOfMusic/add', component: PieceOfMusicAddComponent},
-  {path: 'manage/Ticket/:id', component: TicketEditComponent},
-  {path: 'manage/Ticket/add', component: TicketAddComponent},
   {path: 'manage/User/:id', component: UserEditComponent},
   {path: 'manage/User/add', component: UserAddComponent},
 
