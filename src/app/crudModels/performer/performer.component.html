@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Lp.</th>
+    <th scope="col">Szczegóły</th>
+    <th scope="col">Koszt</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let performer of permormers">
+    <th scope="row">{{performer.id}}</th>
+    <td>{{performer.details}}</td>
+    <td>{{performer.cost}}</td>
+  </tr>
+  </tbody>
+</table>

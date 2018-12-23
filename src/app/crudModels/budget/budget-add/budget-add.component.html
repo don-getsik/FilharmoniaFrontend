@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Suma transakcji</label>
+        <input type="number" class="form-control" formControlName="sum" #sum/>
+      </div>
+      <div *ngIf="angForm.controls['sum'].invalid && (angForm.controls['sum'].dirty || angForm.controls['sum'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Suma jest wymagana</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Stan konta po transakcji</label>
+        <input type="number" class="form-control" formControlName="amount" #amount/>
+      </div>
+      <div *ngIf="angForm.controls['amount'].invalid && (angForm.controls['amount'].dirty || angForm.controls['amount'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Stan konta po transakcji jest wymagany</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Nazwa transakcji</label>
+        <input type="text" class="form-control" formControlName="title" #title/>
+      </div>
+      <div *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Nazwa transakcji jest wymagana</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Szczegóły transakcji</label>
+        <input type="text" class="form-control" formControlName="details" #details/>
+      </div>
+      <div *ngIf="angForm.controls['details'].invalid && (angForm.controls['details'].dirty || angForm.controls['details'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Szczegóły transakcji jest wymagane</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Data</label>
+        <input type="date" class="form-control" formControlName="date" #date/>
+      </div>
+      <div *ngIf="angForm.controls['date'].invalid && (angForm.controls['date'].dirty || angForm.controls['date'].touched)" class="alert alert-danger">
+        <div *ngIf="f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Data jest wymagana</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addBusiness(sum.value, amount.value, title.value, details.value, date.value)"
+                [disabled]="angForm.invalid"
+                class="btn btn-primary">Zapisz</button>
+      </div>
+    </form>
+  </div>
+</div>

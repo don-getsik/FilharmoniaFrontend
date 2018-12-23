@@ -1,4 +1,4 @@
-export class Performers {
+export class Performer {
   id: number;
   details: string;
   cost: number;

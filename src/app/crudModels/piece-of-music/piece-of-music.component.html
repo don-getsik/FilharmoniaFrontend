@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Lp.</th>
+    <th scope="col">Kompozytor</th>
+    <th scope="col">Tytuł</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let pom of piecesOfMusics">
+    <th scope="row">{{pom.id}}</th>
+    <td>{{pom.composer}}</td>
+    <td>{{pom.title}}</td>
+  </tr>
+  </tbody>
+</table>

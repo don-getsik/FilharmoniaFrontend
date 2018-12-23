@@ -1,0 +1,29 @@
+<div class="col-sm-6 offset-sm-3 text-center">
+  <h2>Kupowanie biletu</h2>
+  <div class="form-group">
+    <label>
+      Wybierz repetruar i datę
+      <select class="form-control">
+        <option>Ala ma kota</option>
+      </select>
+    </label>
+    <br/>
+  </div>
+    <label>Wybierz miejsce do siedzenia</label>
+      <div *ngFor="let row of seats" style="height: 40px">
+        <div class="btn-group btn-group-toggle">
+         <div *ngFor="let column of row" style="display:inline-block; width: 40px">
+           <div *ngIf="column==0" style="display:inline-block;">
+              <label class="btn btn-primary">
+               <input type="checkbox" >
+              </label>
+            </div>
+            <div *ngIf="column==2" style="display: inline-block">
+              <label class="btn btn-danger">
+                <input type="checkbox" disabled>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

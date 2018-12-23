@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Lp.</th>
+    <th scope="col">Nazwa zniżki</th>
+    <th scope="col">Procent zniżki</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let discount of discounts">
+    <th scope="row">{{discount.id}}</th>
+    <td>{{discount.title}}</td>
+    <td>{{discount.precentage}}</td>
+  </tbody>
+</table>

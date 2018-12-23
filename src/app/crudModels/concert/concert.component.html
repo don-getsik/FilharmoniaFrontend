@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Lp.</th>
+    <th scope="col">Wykonawca</th>
+    <th scope="col">Tytuł</th>
+    <th scope="col">Koszt organizacji</th>
+    <th scope="col">Koszt biletu</th>
+    <th scope="col">Data</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let concert of concerts">
+    <th scope="row">{{concert.id}}</th>
+    <td>{{concert.performers.details}}</td>
+    <td>{{concert.title}}</td>
+    <td>{{concert.organizationCosts}}</td>
+    <td>{{concert.ticketCosts}}</td>
+    <td>{{concert.date.toLocaleDateString()}}</td>
+  </tr>
+  </tbody>
+</table>

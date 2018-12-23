@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Lp.</th>
+    <th scope="col">Kupujący</th>
+    <th scope="col">Koncert</th>
+    <th scope="col">Data</th>
+    <th scope="col">Rząd</th>
+    <th scope="col">Miejsce</th>
+    <th scope="col">Rodzaj zniżki</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ticket of tickets">
+    <th scope="row">{{ticket.id}}</th>
+    <td>{{ticket.purchase.email}}</td>
+    <td>{{ticket.concert.title}}</td>
+    <td>{{ticket.concert.date.toLocaleDateString()}}</td>
+    <td>{{ticket.seat.row}}</td>
+    <td>{{ticket.seat.position}}</td>
+    <td>{{ticket.discount.title}}</td>
+  </tr>
+  </tbody>
+</table>

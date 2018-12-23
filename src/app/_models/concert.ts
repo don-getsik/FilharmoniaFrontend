@@ -1,9 +1,9 @@
-import {Performers} from './performers';
+import {Performer} from './performer';
 import {ConcertRoom} from './concertRoom';
 
 export class Concert {
   id: number;
-  performers: Performers;
+  performers: Performer;
   concertRoom: ConcertRoom;
   date: Date;
   title: string;

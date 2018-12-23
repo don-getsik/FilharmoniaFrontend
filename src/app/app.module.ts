@@ -5,10 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
-
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
-
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
@@ -28,6 +26,18 @@ import { DiscountComponent } from './crudModels/discount/discount.component';
 import {BudgetService} from './crudServices/budget.service';
 import { BudgetEditComponent } from './crudModels/budget/budget-edit/budget-edit.component';
 import { BudgetAddComponent } from './crudModels/budget/budget-add/budget-add.component';
+import { ConcertAddComponent } from './crudModels/concert/concert-add/concert-add.component';
+import { ConcertEditComponent } from './crudModels/concert/concert-edit/concert-edit.component';
+import { DiscountAddComponent } from './crudModels/discount/discount-add/discount-add.component';
+import { DiscountEditComponent } from './crudModels/discount/discount-edit/discount-edit.component';
+import { PerformerAddComponent } from './crudModels/performer/performer-add/performer-add.component';
+import { PerformerEditComponent } from './crudModels/performer/performer-edit/performer-edit.component';
+import { PieceOfMusicAddComponent } from './crudModels/piece-of-music/piece-of-music-add/piece-of-music-add.component';
+import { PieceOfMusicEditComponent } from './crudModels/piece-of-music/piece-of-music-edit/piece-of-music-edit.component';
+import { TicketAddComponent } from './crudModels/ticket/ticket-add/ticket-add.component';
+import { TicketEditComponent } from './crudModels/ticket/ticket-edit/ticket-edit.component';
+import { UserAddComponent } from './crudModels/user/user-add/user-add.component';
+import { UserEditComponent } from './crudModels/user/user-edit/user-edit.component';
 
 @NgModule({
     imports: [
@@ -52,7 +62,19 @@ import { BudgetAddComponent } from './crudModels/budget/budget-add/budget-add.co
         UserComponent,
         DiscountComponent,
         BudgetEditComponent,
-        BudgetAddComponent
+        BudgetAddComponent,
+        ConcertAddComponent,
+        ConcertEditComponent,
+        DiscountAddComponent,
+        DiscountEditComponent,
+        PerformerAddComponent,
+        PerformerEditComponent,
+        PieceOfMusicAddComponent,
+        PieceOfMusicEditComponent,
+        TicketAddComponent,
+        TicketEditComponent,
+        UserAddComponent,
+        UserEditComponent
     ],
     providers: [
         AuthGuard,
