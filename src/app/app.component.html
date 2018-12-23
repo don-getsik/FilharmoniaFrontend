@@ -1,0 +1,40 @@
+<!-- main app container -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">Filharmonia</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="">Strona główna</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="buy">Kup bilet</a>
+            </li>
+            <li class="nav-item">
+              <div *ngIf="isLoggedIn()"><a class="nav-link" href="manage">Zarządzaj</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="form-inline">
+      <div *ngIf="isLoggedIn(); then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <div class="btn-group" role="group">
+            <button class="btn btn-light">Witaj {{getUserName()}}! </button>
+            <button class="btn btn-danger" (click)="logOff()">Wyloguj</button>
+          </div>
+        </ng-template>
+      <ng-template #elseBlock>
+        <div class="btn-group" role="group">
+          <a class="btn btn-primary" href="login">Logowanie</a>
+          <a class="btn btn-success" href="register">Rejestracja</a>
+        </div>
+      </ng-template>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <alert></alert>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
