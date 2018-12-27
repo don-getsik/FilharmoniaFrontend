@@ -45,17 +45,17 @@ const appRoutes: Routes = [
     ]
   },
 
-  {path: 'manage/Transaction/:id', component: BudgetEditComponent},
+  {path: 'manage/Transaction/edit/:id', component: BudgetEditComponent},
   {path: 'manage/Transaction/add', component: BudgetAddComponent},
-  {path: 'manage/Concert/:id', component: ConcertEditComponent},
+  {path: 'manage/Concert/edit/:id', component: ConcertEditComponent},
   {path: 'manage/Concert/add', component: ConcertAddComponent},
-  {path: 'manage/Discount/:id', component: DiscountEditComponent},
+  {path: 'manage/Discount/edit/:id', component: DiscountEditComponent},
   {path: 'manage/Discount/add', component: DiscountAddComponent},
-  {path: 'manage/Performer/:id', component: PerformerEditComponent},
+  {path: 'manage/Performer/edit/:id', component: PerformerEditComponent},
   {path: 'manage/Performer/add', component: PerformerAddComponent},
-  {path: 'manage/PieceOfMusic/:id', component: PieceOfMusicEditComponent},
+  {path: 'manage/PieceOfMusic/edit/:id', component: PieceOfMusicEditComponent},
   {path: 'manage/PieceOfMusic/add', component: PieceOfMusicAddComponent},
-  {path: 'manage/User/:id', component: UserEditComponent},
+  {path: 'manage/User/edit/:id', component: UserEditComponent},
   {path: 'manage/User/add', component: UserAddComponent},
 
   // otherwise redirect to home

@@ -36,6 +36,7 @@ import { PieceOfMusicAddComponent } from './crudModels/piece-of-music/piece-of-m
 import { PieceOfMusicEditComponent } from './crudModels/piece-of-music/piece-of-music-edit/piece-of-music-edit.component';
 import { UserAddComponent } from './crudModels/user/user-add/user-add.component';
 import { UserEditComponent } from './crudModels/user/user-edit/user-edit.component';
+import { SelectConcertComponent } from './select-concert/select-concert.component';
 
 @NgModule({
     imports: [
@@ -70,7 +71,8 @@ import { UserEditComponent } from './crudModels/user/user-edit/user-edit.compone
         PieceOfMusicAddComponent,
         PieceOfMusicEditComponent,
         UserAddComponent,
-        UserEditComponent
+        UserEditComponent,
+        SelectConcertComponent
     ],
     providers: [
         AuthGuard,

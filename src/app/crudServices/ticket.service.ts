@@ -36,6 +36,6 @@ export class TicketService {
   }
 
   getTicket (id: number) {
-    return this.tickets[id];
+    return this.tickets[id-1];
   }
 }

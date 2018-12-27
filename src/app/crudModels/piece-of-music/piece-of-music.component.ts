@@ -10,10 +10,11 @@ import {PieceOfMusicService} from '../../crudServices/piece-of-music.service';
 })
 export class PieceOfMusicComponent implements OnInit {
 
-  piecesOfMusics = PIECEOFMUSICS;
+  piecesOfMusics: PieceOfMusic[];
   constructor(private ps: PieceOfMusicService) { }
 
   ngOnInit() {
+    this.piecesOfMusics = this.ps.getPieceOfMusics();
   }
 
   deletePerformer(pom: PieceOfMusic) {

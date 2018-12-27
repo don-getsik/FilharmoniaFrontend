@@ -14,6 +14,8 @@ export class BudgetAddComponent implements OnInit {
     this.createForm();
   }
 
+
+
   createForm() {
     this.angForm = this.fb.group({
       sum: [0, Validators.required ],
@@ -26,8 +28,8 @@ export class BudgetAddComponent implements OnInit {
 
   get f() { return this.angForm.controls; }
 
-  addBusiness(sum, amount, title, details, date) {
-    this.bs.addTransaction(sum, amount, title, details, date);
+  addBusiness(transaction_sum, amount, title, details, date) {
+    this.bs.addTransaction(transaction_sum, amount, title, details, date);
   }
 
   ngOnInit() {

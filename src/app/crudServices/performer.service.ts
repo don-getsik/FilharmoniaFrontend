@@ -33,6 +33,6 @@ export class PerformerService {
   }
 
   getPerformer (id: number) {
-    return this.performers[id];
+    return this.performers[id-1];
   }
 }

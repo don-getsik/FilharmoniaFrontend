@@ -32,6 +32,6 @@ export class BudgetService {
   }
 
   getTransaction (id: number) {
-    return this.transactions[id];
+    return this.transactions[id-1];
   }
 }

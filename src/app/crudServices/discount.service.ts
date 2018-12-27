@@ -32,6 +32,6 @@ export class DiscountService {
   }
 
   getDiscount (id: number) {
-    return this.discounts[id];
+    return this.discounts[id-1];
   }
 }

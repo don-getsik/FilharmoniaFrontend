@@ -32,6 +32,6 @@ export class PieceOfMusicService {
   }
 
   getPieceOfMusic (id: number) {
-    return this.pieceOfMusics[id];
+    return this.pieceOfMusics[id-1];
   }
 }

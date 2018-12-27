@@ -38,6 +38,6 @@ export class ConcertService {
   }
 
   getConcert (id: number) {
-    return this.concerts[id];
+    return this.concerts[id-1];
   }
 }

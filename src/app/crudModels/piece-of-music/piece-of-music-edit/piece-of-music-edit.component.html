@@ -3,21 +3,17 @@
     <form [formGroup]="angForm" novalidate>
       <div class="form-group">
         <label class="col-md-4">Nazwa utworu</label>
-        <input type="text" class="form-control" formControlName="details" #title [(ngModel)] = "pieceOfMusic.title" />
+        <input type="text" class="form-control" formControlName="title" #title [(ngModel)] = "pieceOfMusic.title" />
       </div>
       <div *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)" class="alert alert-danger">
-        <div *ngIf="f.role.errors" class="invalid-feedback">
-          <div *ngIf="f.role.errors.required">Nazwa utworu jest wymagana</div>
-        </div>
+          <div *ngIf="f.title.errors.required">Nazwa utworu jest wymagana</div>
       </div>
       <div class="form-group">
-        <label class="col-md-4">Koszt wykonawcy</label>
-        <input type="number" class="form-control" formControlName="cost" #composer [(ngModel)] = "pieceOfMusic.composer" />
+        <label class="col-md-4">Nazwa wykonawcy</label>
+        <input type="text" class="form-control" formControlName="composer" #composer [(ngModel)] = "pieceOfMusic.composer" />
       </div>
       <div *ngIf="angForm.controls['composer'].invalid && (angForm.controls['composer'].dirty || angForm.controls['composer'].touched)" class="alert alert-danger">
-        <div *ngIf="f.role.errors" class="invalid-feedback">
-          <div *ngIf="f.role.errors.required">Koszt wykonawcy jest wymagany</div>
-        </div>
+          <div *ngIf="f.composer.errors.required">Nazwa wykonawcy jest wymagany</div>
       </div>
 
       <div class="form-group">
