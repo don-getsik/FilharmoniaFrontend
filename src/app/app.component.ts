@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './_services/authentication.service'
+import { AuthenticationService } from './_services'
 import {Router} from '@angular/router';
 
 @Component({
@@ -14,6 +14,14 @@ export class AppComponent {
 
     isLoggedIn() {
         return this.Auth.isLogged();
+    }
+
+    isLoggedInAdmin() {
+      return this.Auth.isLoggedAdmin();
+    }
+
+    isLoggedInApprover() {
+      return this.Auth.isLoggedApprover();
     }
 
     getUserName() {

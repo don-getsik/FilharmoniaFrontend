@@ -1,10 +1,5 @@
 <ul class="nav nav-tabs nav-fill">
   <li class="nav-item">
-    <div *ngIf="this.currentUrl === '/manage/Transaction'; then thenBlockbudget else elseBlockbudget"></div>
-    <ng-template #thenBlockbudget><a class="nav-link active" href="manage/Transaction">Transakcje</a></ng-template>
-    <ng-template #elseBlockbudget><a class="nav-link" href="manage/Transaction">Transakcje</a></ng-template>
-  </li>
-  <li class="nav-item">
     <div *ngIf="this.currentUrl === '/manage/Concert'; then thenBlockconcert else elseBlockconcert"></div>
     <ng-template #thenBlockconcert><a class="nav-link active" href="manage/Concert">Koncerty</a></ng-template>
     <ng-template #elseBlockconcert><a class="nav-link" href="manage/Concert">Koncerty</a></ng-template>
@@ -15,19 +10,14 @@
     <ng-template #elseBlockperformers><a class="nav-link" href="manage/Performer">Wykonawcy</a></ng-template>
   </li>
   <li class="nav-item">
-    <div *ngIf="this.currentUrl === '/manage/Ticket'; then thenBlockticket else elseBlockticket"></div>
-    <ng-template #thenBlockticket><a class="nav-link active" href="manage/Ticket">Bilety</a></ng-template>
-    <ng-template #elseBlockticket><a class="nav-link" href="manage/Ticket">Bilety</a></ng-template>
+    <div *ngIf="this.currentUrl === '/manage/PieceOfMusic'; then thenBlockticket else elseBlockticket"></div>
+    <ng-template #thenBlockticket><a class="nav-link active" href="manage/PieceOfMusic">Utwory</a></ng-template>
+    <ng-template #elseBlockticket><a class="nav-link" href="manage/PieceOfMusic">Utwory</a></ng-template>
   </li>
   <li class="nav-item">
     <div *ngIf="this.currentUrl === '/manage/Discount'; then thenBlockDiscount else elseBlockDiscount"></div>
     <ng-template #thenBlockDiscount><a class="nav-link" href="manage/Discount">Zniżki</a></ng-template>
     <ng-template #elseBlockDiscount><a class="nav-link" href="manage/Discount">Zniżki</a></ng-template>
-  </li>
-  <li class="nav-item">
-    <div *ngIf="this.currentUrl === '/manage/User'; then thenBlockuser else elseBlockuser"></div>
-    <ng-template #thenBlockuser><a class="nav-link" href="manage/User">Użytkownicy</a></ng-template>
-    <ng-template #elseBlockuser><a class="nav-link" href="manage/User">Użytkownicy</a></ng-template>
   </li>
 </ul>
 <div class="crudElement"> <router-outlet></router-outlet></div>

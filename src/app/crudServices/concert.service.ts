@@ -12,7 +12,7 @@ export class ConcertService {
   }
 
   editConcert(c: Concert) {
-    this.http.post("http://localhost:8081/admin/concert", c);
+    return this.http.post("http://localhost:8081/admin/concert", c);
   }
 
   deleteConcert (id: number) {
@@ -20,7 +20,7 @@ export class ConcertService {
   }
 
   getConcerts () {
-    return this.http.get<Concert[]>("http://localhost:8081/concert");
+    return this.http.get<Concert[]>("http://localhost:8081/admin/concert");
   }
 
   getConcert (id: number) {
@@ -32,6 +32,6 @@ export class ConcertService {
   }
 
   getApprovedConcert () {
-    return this.http.get<Concert[]>("http://localhost:8081/concert");
+    return this.http.get<Concert[]>("http://localhost:8081/concert/approved");
   }
 }

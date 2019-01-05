@@ -10,8 +10,11 @@
               <a class="nav-link" href="concerts">Repertuar</a>
             </li>
             <li class="nav-item">
-              <div *ngIf="isLoggedIn()"><a class="nav-link" href="manage">Zarządzaj</a></div>
+              <div *ngIf="isLoggedInAdmin()"><a class="nav-link" href="manage">Zarządzaj</a></div>
             </li>
+          <li class="nav-item">
+            <div *ngIf="isLoggedInApprover()"><a class="nav-link" href="approve">Zatwierdź koncerty</a></div>
+          </li>
         </ul>
     </div>
     <div class="form-inline">
@@ -25,7 +28,6 @@
       <ng-template #elseBlock>
         <div class="btn-group" role="group">
           <a class="btn btn-primary" href="login">Logowanie</a>
-          <a class="btn btn-success" href="register">Rejestracja</a>
         </div>
       </ng-template>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Discount} from '../../_models/discount';
 import {DiscountService} from '../../crudServices/discount.service';
+import {AlertService} from '../../_services';
 
 @Component({
   selector: 'app-discount',
@@ -9,12 +10,13 @@ import {DiscountService} from '../../crudServices/discount.service';
 })
 export class DiscountComponent implements OnInit {
 
-  constructor(private ds: DiscountService) { }
+  constructor(private ds: DiscountService,
+              private alertService: AlertService) { }
 
   discounts: Discount[];
 
   ngOnInit() {
-    this.ds.getDiscounts().subscribe(data => this.discounts = data, error => console.log(error));
+    this.ds.getDiscounts().subscribe(data => this.discounts = data, this.alertService.error);
   }
 
   deleteDiscount(discount: Discount) {

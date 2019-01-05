@@ -4,8 +4,6 @@
     <th scope="col">Lp.</th>
     <th scope="col">Wykonawca</th>
     <th scope="col">Tytuł</th>
-    <th scope="col">Koszt organizacji</th>
-    <th scope="col">Koszt biletu</th>
     <th scope="col">Data</th>
     <th scope="col"></th>
   </tr>
@@ -15,9 +13,7 @@
     <th scope="row">{{concert.idConcert}}</th>
     <td>{{concert.concertPerformers}}</td>
     <td>{{concert.concertTitle}}</td>
-    <td>{{concert.additionalOrganisationCosts}}</td>
-    <td>{{concert.ticketCost}}</td>
-    <td>{{concert.date}}</td>
+    <td>{{parseDate(concert.date)}}</td>
     <td><div class="btn-group" role="group" aria-label="Basic example">
       <a class="btn btn-info btn-sm" [href]="'manage/Concert/edit/' + concert.idConcert">Edytuj</a>
       <button type="button" class="btn btn-danger btn-sm" (click)="deleteConcert(concert)">Usuń</button>

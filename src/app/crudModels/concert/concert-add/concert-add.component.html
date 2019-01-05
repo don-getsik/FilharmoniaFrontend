@@ -3,29 +3,37 @@
     <form>
       <div class="form-group">
         <label class="col-md-4">Wykonawca</label>
-        <select class="form-control" [(ngModel)]="concert.concertPerformers" name="concertPerformers" id="concertPerformers" required>
-          <option *ngFor="let perf of getPerformers()" [ngValue]="perf.details">{{perf.details}}</option>
+        <select class="{{performer.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+                [(ngModel)]="concert.concertPerformers" name="concertPerformers" id="concertPerformers"
+                required #performer="ngModel">
+          <option *ngFor="let perf of performers" [ngValue]="perf.details">{{perf.details}}</option>
         </select>
       </div>
       <div class="form-group">
         <label class="col-md-4">Tytuł</label>
-        <input type="text" class="form-control" id="concertTitle" required [(ngModel)]="concert.concertTitle" name="concertTitle"/>
+        <input type="text" class="{{title.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               id="concertTitle" required [(ngModel)]="concert.concertTitle" name="concertTitle" #title="ngModel"/>
       </div>
       <div class="form-group">
         <label class="col-md-4">Dodatkowe koszty organizacji</label>
-        <input type="number" class="form-control" required id="additionalOrganisationCosts" [(ngModel)]="concert.additionalOrganisationCosts" name="additionalOrganisationCosts"/>
+        <input type="number" class="{{acost.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               required id="additionalOrganisationCosts" [(ngModel)]="concert.additionalOrganisationCosts"
+               name="additionalOrganisationCosts" #acost="ngModel"/>
       </div>
       <div class="form-group">
         <label class="col-md-4">Cena biletu</label>
-        <input type="number" class="form-control" id="ticketCost" [(ngModel)]="concert.ticketCost" name="ticketCost" required/>
+        <input type="number" class="{{tcost.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               id="ticketCost" [(ngModel)]="concert.ticketCost" name="ticketCost" required #tcost="ngModel"/>
       </div>
       <div class="form-group">
         <label class="col-md-4">Data</label>
-        <input type="date" class="form-control" id="date" [(ngModel)]="concert.date" name="date" required/>
+        <input type="datetime-local" class="{{date.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               id="date" [(ngModel)]="concert.date" name="date" required #date="ngModel"/>
       </div>
-      <form [formGroup]="repForm">
+      <form>
         <div class="form-group">
-          <label class="col-md-4">Utwory</label>
+          <label class="col-md-4">Utwory
+            <font color="red" *ngIf="repertoire.length === 0">(Musisz dodać co najmniej 1 utwór)</font></label>
           <table class="table">
             <thead>
             <tr>
@@ -43,17 +51,17 @@
             </tbody>
           </table>
           <div class="input-group">
-            <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-              <option *ngFor="let pom of getPiecesOfMusic()" [value]="pom" (change)="setMusic(pom)">{{pom.title}}</option>
+            <select class="custom-select" id="selectPiece" [(ngModel)]="piece" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let pom of piecesOfMusic" [ngValue]="pom">{{pom.title}}</option>
             </select>
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" (click)="addToRepertoire()">Dodaj utwór</button>
+              <button class="btn btn-sucess" type="button" (click)="addToRepertoire()">Dodaj utwór</button>
             </div>
           </div>
         </div>
       </form>
       <div class="form-group">
-        <button class="btn btn-primary" (click)="addConcert()">Zapisz</button>
+        <button class="btn btn-primary" [disabled]="title.invalid || performer.invalid || acost.invalid || tcost.invalid || date.invalid || repertoire.length === 0" (click)="addConcert()">Zapisz</button>
       </div>
     </form>
   </div>

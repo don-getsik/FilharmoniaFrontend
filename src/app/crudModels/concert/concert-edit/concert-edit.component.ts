@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ConcertService} from '../../../crudServices/concert.service';
 import {PerformerService} from '../../../crudServices/performer.service';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Concert} from '../../../_models/concert';
 import {PieceOfMusic} from '../../../_models/pieceOfMusic';
 import {PieceOfMusicService} from '../../../crudServices/piece-of-music.service';
 import {Performer} from '../../../_models/performer';
+import {AlertService} from '../../../_services';
 
 @Component({
   selector: 'app-concert-edit',
@@ -17,12 +18,14 @@ export class ConcertEditComponent implements OnInit {
   concert: Concert = new Concert();
   piece: PieceOfMusic;
   repertoire: PieceOfMusic[] = [];
-  private performers: Performer[];
+  performers: Performer[];
+  piecesOfMusic: PieceOfMusic[];
   constructor(private route: ActivatedRoute,
               private router: Router,
               private bs: ConcertService,
               private ps: PerformerService,
-              private ms: PieceOfMusicService) {
+              private ms: PieceOfMusicService,
+              private alertService: AlertService) {
   }
 
 
@@ -31,14 +34,16 @@ export class ConcertEditComponent implements OnInit {
   }
 
   updateConcert() {
-    this.bs.editConcert(this.concert);
+    if(this.concert.date.length === 16) this.concert.date = this.concert.date + ":00.000 UTC";
+    else this.concert.date = this.concert.date + " UTC";
+    this.bs.editConcert(this.concert).subscribe(data => window.location.href='http://localhost:4200/manage/Concert',
+      this.alertService.error);
   }
 
   addToRepertoire () {
-    let ps = new PieceOfMusic();
-    ps.idPiece = this.repertoire.length+1;
-    this.repertoire.push(ps);
+    if(this.piece != null) this.repertoire.push(this.piece);
   }
+
 
   deleteMusic(p: PieceOfMusic) {
     let index = this.repertoire.indexOf(p);
@@ -48,22 +53,17 @@ export class ConcertEditComponent implements OnInit {
     }
   }
 
-  setMusic(pom: PieceOfMusic) {
-    this.piece = pom;
-  }
-
-  getPiecesOfMusic() {
-    this.ms.getPieceOfMusics();
-  }
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.bs.getConcert(params['id']).subscribe(
         data => {
+          data.date = data.date.substring(0,23);
           this.concert = data;
           this.repertoire = data.repertoire;},
         error => console.log(error));
     });
 
-    this.ps.getPerformers().subscribe(data => this.performers = data);
+    this.ps.getPerformers().subscribe(data => this.performers = data, this.alertService.error);
+    this.ms.getPieceOfMusics().subscribe(data => this.piecesOfMusic = data, this.alertService.error);
   }
 }

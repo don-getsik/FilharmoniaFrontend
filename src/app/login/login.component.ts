@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
 
         this.loading = true;
+        console.log(this.login);
         this.authenticationService.login(this.login)
             .pipe(first())
             .subscribe(

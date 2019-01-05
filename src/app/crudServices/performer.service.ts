@@ -11,7 +11,7 @@ export class PerformerService {
   }
 
   editPerformer(cp: Performer) {
-    this.http.post("http://localhost:8081/admin/performer", cp);
+    return this.http.post("http://localhost:8081/admin/performer", cp);
   }
 
   deletePerformer (id: Performer) {

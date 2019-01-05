@@ -3,15 +3,16 @@
     <form>
       <div class="form-group">
         <label class="col-md-4">Nazwa zniżki</label>
-        <input type="text" [(ngModel)] = "discount.name" name="name" id="name" required/>
+        <input type="text" class="{{name.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               [(ngModel)] = "discount.name" name="name" id="name" required #name="ngModel"/>
       </div>
       <div class="form-group">
         <label class="col-md-4">Wartość procentowa zniżki</label>
-        <input type="number" class="form-control" [(ngModel)] = "discount.percents" name="percents" id="percents" required/>
+        <input type="number" class="{{percents.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               [(ngModel)] = "discount.percents" name="percents" id="percents" required #percents="ngModel"/>
       </div>
-
       <div class="form-group">
-        <button (click)="updateDiscount()" class="btn btn-primary">Zapisz zmiany</button>
+        <button (click)="updateDiscount()" class="btn btn-primary" [disabled]="name.invalid || percents.invalid">Zapisz zmiany</button>
       </div>
     </form>
   </div>

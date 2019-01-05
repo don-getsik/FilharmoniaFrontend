@@ -5,6 +5,8 @@ import {PerformerService} from '../../../crudServices/performer.service';
 import {PieceOfMusic} from '../../../_models/pieceOfMusic';
 import {Concert} from '../../../_models/concert';
 import {PieceOfMusicService} from '../../../crudServices/piece-of-music.service';
+import {Performer} from '../../../_models/performer';
+import {AlertService} from '../../../_services';
 
 @Component({
   selector: 'app-concert-add',
@@ -16,8 +18,13 @@ export class ConcertAddComponent implements OnInit {
 
   concert: Concert = new Concert();
   piece: PieceOfMusic;
-  repertoire: PieceOfMusic[];
-  constructor(private bs: ConcertService, private ps: PerformerService, private ms: PieceOfMusicService) {
+  performers: Performer[];
+  repertoire: PieceOfMusic[] =[];
+  piecesOfMusic: PieceOfMusic[];
+  constructor(private bs: ConcertService,
+              private ps: PerformerService,
+              private ms: PieceOfMusicService,
+              private alertService: AlertService) {
     this.repertoire = [];
   }
 
@@ -27,7 +34,7 @@ export class ConcertAddComponent implements OnInit {
   }
 
   addToRepertoire () {
-    this.repertoire.push(this.piece);
+    if (this.piece != null) this.repertoire.push(this.piece);
   }
 
   deleteMusic(p: PieceOfMusic) {
@@ -38,22 +45,14 @@ export class ConcertAddComponent implements OnInit {
     }
   }
 
-  getPiecesOfMusic() {
-    this.ms.getPieceOfMusics();
-  }
-
   addConcert() {
-    this.bs.editConcert(this.concert);
-  }
-
-  getPerformers() {
-    return this.ps.getPerformers();
+    this.concert.repertoire = this.repertoire;
+    this.concert.date = this.concert.date + ":00.000 UTC";
+    this.bs.editConcert(this.concert).subscribe(data => window.location.href='http://localhost:4200/manage/Concert', this.alertService.error);
   }
 
   ngOnInit() {
-  }
-
-  setMusic(pom: PieceOfMusic) {
-    this.piece = pom;
+    this.ps.getPerformers().subscribe(data => this.performers = data, this.alertService.error);
+    this.ms.getPieceOfMusics().subscribe(data => this.piecesOfMusic = data, this.alertService.error);
   }
 }

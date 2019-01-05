@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Performer} from '../../_models/performer';
 import {PerformerService} from '../../crudServices/performer.service';
+import {AlertService} from '../../_services';
 
 @Component({
   selector: 'app-performer',
@@ -10,10 +11,11 @@ import {PerformerService} from '../../crudServices/performer.service';
 export class PerformerComponent implements OnInit {
 
   performers: Performer[];
-  constructor(private ps: PerformerService) { }
+  constructor(private ps: PerformerService,
+              private alertService: AlertService) { }
 
   ngOnInit() {
-    this.ps.getPerformers().subscribe(data => this.performers = data, error => console.log(error));
+    this.ps.getPerformers().subscribe(data => this.performers = data, this.alertService.error);
   }
 
   deletePerformer(performer: Performer) {

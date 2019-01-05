@@ -2,13 +2,11 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {HomeComponent} from './home';
 import {LoginComponent} from './login';
-import {RegisterComponent} from './register';
 import {AuthGuard} from './_guards';
 import {CrudComponent} from './crud/crud.component';
 import {BuyTicketComponent} from './buy-ticket/buy-ticket.component';
 import {ConcertComponent} from './crudModels/concert/concert.component';
 import {PerformerComponent} from './crudModels/performer/performer.component';
-import {TicketComponent} from './crudModels/ticket/ticket.component';
 import {DiscountComponent} from './crudModels/discount/discount.component';
 import {ConcertEditComponent} from './crudModels/concert/concert-edit/concert-edit.component';
 import {ConcertAddComponent} from './crudModels/concert/concert-add/concert-add.component';
@@ -17,11 +15,15 @@ import {DiscountAddComponent} from './crudModels/discount/discount-add/discount-
 import {PerformerAddComponent} from './crudModels/performer/performer-add/performer-add.component';
 import {PerformerEditComponent} from './crudModels/performer/performer-edit/performer-edit.component';
 import {SelectConcertComponent} from './select-concert/select-concert.component';
+import {PieceOfMusicComponent} from './crudModels/piece-of-music/piece-of-music.component';
+import {PieceOfMusicEditComponent} from './crudModels/piece-of-music/piece-of-music-edit/piece-of-music-edit.component';
+import {PieceOfMusicAddComponent} from './crudModels/piece-of-music/piece-of-music-add/piece-of-music-add.component';
+import {AproveConcertComponent} from './aprove-concert/aprove-concert.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'approve', component: AproveConcertComponent, canActivate: [AuthGuard]},
   {path: 'buy', component: BuyTicketComponent},
   {
     path: 'manage', component: CrudComponent, canActivate: [AuthGuard],
@@ -29,19 +31,21 @@ const appRoutes: Routes = [
       {path: '', redirectTo: 'Transaction', pathMatch: 'full'},
       {path: 'Concert', component: ConcertComponent},
       {path: 'Performer', component: PerformerComponent},
-      {path: 'Ticket', component: TicketComponent},
       {path: 'Discount', component: DiscountComponent},
+      {path: 'PieceOfMusic', component: PieceOfMusicComponent},
     ]
   },
   {path: 'concerts', component: SelectConcertComponent},
   {path: 'concerts/:id', component: BuyTicketComponent},
 
-  {path: 'manage/Concert/edit/:id', component: ConcertEditComponent},
-  {path: 'manage/Concert/add', component: ConcertAddComponent},
-  {path: 'manage/Discount/edit/:id', component: DiscountEditComponent},
-  {path: 'manage/Discount/add', component: DiscountAddComponent},
-  {path: 'manage/Performer/edit/:id', component: PerformerEditComponent},
-  {path: 'manage/Performer/add', component: PerformerAddComponent},
+  {path: 'manage/Concert/edit/:id', component: ConcertEditComponent, canActivate: [AuthGuard]},
+  {path: 'manage/Concert/add', component: ConcertAddComponent, canActivate: [AuthGuard]},
+  {path: 'manage/Discount/edit/:id', component: DiscountEditComponent, canActivate: [AuthGuard]},
+  {path: 'manage/Discount/add', component: DiscountAddComponent, canActivate: [AuthGuard]},
+  {path: 'manage/Performer/edit/:id', component: PerformerEditComponent, canActivate: [AuthGuard]},
+  {path: 'manage/Performer/add', component: PerformerAddComponent, canActivate: [AuthGuard]},
+  {path: 'manage/PieceOfMusic/edit/:id', component: PieceOfMusicEditComponent, canActivate: [AuthGuard]},
+  {path: 'manage/PieceOfMusic/add', component: PieceOfMusicAddComponent, canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}

@@ -7,6 +7,7 @@ import {ActivatedRoute} from '@angular/router';
 import {PurchaseTicket} from '../_models/PutchaseTicket';
 import {SelectedSeat} from '../_models/SelectedSeat';
 import {PayPalService} from '../_services/pay-pal.service';
+import {AlertService} from '../_services';
 
 
 class TicketSeat {
@@ -30,7 +31,8 @@ export class BuyTicketComponent implements OnInit {
   constructor(private ds: DiscountService,
               private ss: SeatService,
               private route: ActivatedRoute,
-              private pps: PayPalService) {
+              private pps: PayPalService,
+              private alertService: AlertService) {
     this.purchase.tickets = [];
   }
 
@@ -57,10 +59,10 @@ export class BuyTicketComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id: string;
+    let id: string = "";
     this.route.params.subscribe(params => id = params['id']);
-    this.ss.getSeats(id).subscribe(data => this.setSeats(data), error => console.log(error));
-    this.ds.getDiscounts().subscribe(data => this.discounts = data, error => console.log(error));
+    this.ss.getSeats(id).subscribe(data => this.setSeats(data), this.alertService.error);
+    this.ds.getDiscounts().subscribe(data => this.discounts = data, this.alertService.error);
     this.seats = [];
     this.fillSeats();
     this.purchase.concertId = parseInt(id);

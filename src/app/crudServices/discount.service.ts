@@ -11,7 +11,7 @@ export class DiscountService {
   }
 
   editDiscount(d: Discount) {
-    this.http.post<Discount[]>('http://localhost:8081/admin/discount',d);
+    return this.http.post<Discount[]>('http://localhost:8081/admin/discount',d);
   }
 
   deleteDiscount (id: string) {

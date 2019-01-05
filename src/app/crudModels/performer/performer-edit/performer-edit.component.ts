@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Performer} from '../../../_models/performer';
 import {PerformerService} from '../../../crudServices/performer.service';
+import {AlertService} from '../../../_services';
 
 @Component({
   selector: 'app-performer-edit',
@@ -11,31 +11,22 @@ import {PerformerService} from '../../../crudServices/performer.service';
 })
 export class PerformerEditComponent implements OnInit {
 
-  performer: Performer;
-  angForm: FormGroup;
+  performer: Performer = new Performer();
   constructor(private route: ActivatedRoute,
               private router: Router,
               private bs: PerformerService,
-              private fb: FormBuilder) {
-    this.createForm();
+              private alertService: AlertService) {
   }
 
-  createForm() {
-    this.angForm = this.fb.group({
-      details: ['', Validators.required ],
-      cost: ['', Validators.required ]
-    });
-  }
-
-  get f() { return this.angForm.controls; }
-
-  updatePerformer(details,cost) {
-    this.bs.editPerformer(this.performer);
+  updatePerformer() {
+    this.bs.editPerformer(this.performer).subscribe(data => window.location.href = 'http://localhost:4200/manage/Performer',
+      this.alertService.error);
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.bs.getPerformers().subscribe(data => this.performer = data[params['id']],error => console.log(error));
+      this.bs.getPerformers().subscribe(data => this.performer = data[params['id'] - 1],
+        this.alertService.error);
     })
   }
 }

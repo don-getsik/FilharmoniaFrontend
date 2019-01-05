@@ -12,7 +12,7 @@ export class PieceOfMusicService {
 
 
   editPieceOfMusic(p: PieceOfMusic) {
-    this.http.post("http://localhost:8081/admin/piece",p);
+    return this.http.post("http://localhost:8081/admin/piece",p);
   }
 
   deletePieceOfMusic (id: number) {
