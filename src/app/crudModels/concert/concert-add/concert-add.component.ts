@@ -46,9 +46,10 @@ export class ConcertAddComponent implements OnInit {
   }
 
   addConcert() {
+    if(this.concert.date.length === 16) this.concert.date = this.concert.date + ":00.000 UTC";
+    else this.concert.date = this.concert.date + " UTC";
     this.concert.repertoire = this.repertoire;
-    this.concert.date = this.concert.date + ":00.000 UTC";
-    this.bs.editConcert(this.concert).subscribe(data => window.location.href='http://localhost:4200/manage/Concert', this.alertService.error);
+    this.bs.editConcert(this.concert).subscribe(data => window.location.href='http://localhost:4200/manage/Concert');
   }
 
   ngOnInit() {
