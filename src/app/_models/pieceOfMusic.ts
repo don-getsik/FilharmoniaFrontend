@@ -1,5 +1,5 @@
 export class PieceOfMusic {
-  id: number;
+  idPiece: number;
   title: string;
   composer: string;
 }

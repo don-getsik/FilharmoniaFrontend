@@ -13,7 +13,7 @@ export class PerformerComponent implements OnInit {
   constructor(private ps: PerformerService) { }
 
   ngOnInit() {
-    this.performers = this.ps.getPerformers();
+    this.ps.getPerformers().subscribe(data => this.performers = data, error => console.log(error));
   }
 
   deletePerformer(performer: Performer) {

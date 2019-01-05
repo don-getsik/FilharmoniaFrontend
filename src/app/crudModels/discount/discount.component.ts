@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {DISCOUNTS} from '../../_mock/discount_mock';
 import {Discount} from '../../_models/discount';
 import {DiscountService} from '../../crudServices/discount.service';
 
@@ -15,10 +14,10 @@ export class DiscountComponent implements OnInit {
   discounts: Discount[];
 
   ngOnInit() {
-    this.discounts = this.ds.getDiscounts();
+    this.ds.getDiscounts().subscribe(data => this.discounts = data, error => console.log(error));
   }
 
   deleteDiscount(discount: Discount) {
-    this.ds.deleteDiscount(discount);
+    this.ds.deleteDiscount(discount.name);
   }
 }

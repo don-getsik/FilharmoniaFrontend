@@ -30,12 +30,12 @@ export class PerformerEditComponent implements OnInit {
   get f() { return this.angForm.controls; }
 
   updatePerformer(details,cost) {
-    this.bs.editPerformer(this.performer.id, details, parseFloat(cost));
+    this.bs.editPerformer(this.performer);
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.performer = this.bs.getPerformer(params['id']);
+      this.bs.getPerformers().subscribe(data => this.performer = data[params['id']],error => console.log(error));
     })
   }
 }

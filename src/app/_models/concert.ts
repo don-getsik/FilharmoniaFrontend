@@ -1,12 +1,14 @@
-import {Performer} from './performer';
-import {ConcertRoom} from './concertRoom';
+import {PieceOfMusic} from './pieceOfMusic';
 
 export class Concert {
-  id: number;
-  performer: Performer;
-  concertRoom: ConcertRoom;
-  date: Date;
-  title: string;
-  organizationCosts: number;
-  ticketCosts: number;
+  idConcert: number;
+  concertPerformers: string;
+  date: string;
+  concertTitle: string;
+  additionalOrganisationCosts: number;
+  ticketCost: number;
+  concertRoomName: string;
+  concertRoomAddress: string;
+  repertoire: PieceOfMusic[];
+  approved: boolean;
 }

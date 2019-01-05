@@ -1,37 +1,24 @@
 import { Injectable } from '@angular/core';
 import {Discount} from '../_models/discount';
-import {DISCOUNTS} from '../_mock/discount_mock';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiscountService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  discounts: Discount[] = DISCOUNTS;
-
-  addDiscount(title: string, precentage: number) {
-    let d: Discount = {id: DISCOUNTS.length, title: title, percentage: precentage};
-    this.discounts.push(d);
+  editDiscount(d: Discount) {
+    this.http.post<Discount[]>('http://localhost:8081/admin/discount',d);
   }
 
-  editDiscount(id: number, title: string, precentage: number) {
-    this.discounts = this.discounts.filter(e => e !== this.discounts.find(e => e.id === id));
-    let d: Discount = {id: id, title: title, percentage: precentage};
-    this.discounts.push (d);
-  }
-
-  deleteDiscount (d: Discount) {
-    this.discounts = this.discounts.filter(e => e !== this.discounts.find(e => e.id === d.id));
+  deleteDiscount (id: string) {
+    this.http.delete<Discount[]>('http://localhost:8081/discount/'+id);
   }
 
   getDiscounts () {
-    return this.discounts;
-  }
-
-  getDiscount (id: number) {
-    return this.discounts[id-1];
+    return this.http.get<Discount[]>('http://localhost:8081/discount');
   }
 }

@@ -12,14 +12,14 @@
   </thead>
   <tbody>
   <tr *ngFor="let concert of concerts">
-    <th scope="row">{{concert.id}}</th>
-    <td>{{concert.performer.details}}</td>
-    <td>{{concert.title}}</td>
-    <td>{{concert.organizationCosts}}</td>
-    <td>{{concert.ticketCosts}}</td>
-    <td>{{concert.date.toLocaleDateString()}}</td>
+    <th scope="row">{{concert.idConcert}}</th>
+    <td>{{concert.concertPerformers}}</td>
+    <td>{{concert.concertTitle}}</td>
+    <td>{{concert.additionalOrganisationCosts}}</td>
+    <td>{{concert.ticketCost}}</td>
+    <td>{{concert.date}}</td>
     <td><div class="btn-group" role="group" aria-label="Basic example">
-      <a class="btn btn-info btn-sm" [href]="'manage/Concert/edit/' + concert.id">Edytuj</a>
+      <a class="btn btn-info btn-sm" [href]="'manage/Concert/edit/' + concert.idConcert">Edytuj</a>
       <button type="button" class="btn btn-danger btn-sm" (click)="deleteConcert(concert)">Usuń</button>
     </div></td>
   </tr>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PerformerService} from '../../../crudServices/performer.service';
+import {Performer} from '../../../_models/performer';
 
 @Component({
   selector: 'app-performer-add',
@@ -10,6 +11,7 @@ import {PerformerService} from '../../../crudServices/performer.service';
 export class PerformerAddComponent implements OnInit {
 
 
+  private performer: Performer;
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private bs: PerformerService) {
     this.createForm();
@@ -24,8 +26,8 @@ export class PerformerAddComponent implements OnInit {
 
   get f() { return this.angForm.controls; }
 
-  addPerformer(details, cost) {
-    this.bs.addPerformer(details, cost);
+  addPerformer() {
+    this.bs.editPerformer(this.performer);
   }
 
   ngOnInit() {

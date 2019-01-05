@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Discount} from '../../../_models/discount';
 import {DiscountService} from '../../../crudServices/discount.service';
@@ -12,30 +11,18 @@ import {DiscountService} from '../../../crudServices/discount.service';
 export class DiscountEditComponent implements OnInit {
 
   discount: Discount;
-  angForm: FormGroup;
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private bs: DiscountService,
-              private fb: FormBuilder) {
-    this.createForm();
+              private bs: DiscountService) {
   }
 
-  createForm() {
-    this.angForm = this.fb.group({
-      title: ['', Validators.required ],
-      percentage: ['', Validators.required ]
-    });
-  }
-
-  get f() { return this.angForm.controls; }
-
-  updateDiscount(title, percentage) {
-    this.bs.editDiscount(this.discount.id, title, parseFloat(percentage));
+  updateDiscount() {
+    this.bs.editDiscount(this.discount);
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.discount = this.bs.getDiscount(params['id']);
+      this.bs.getDiscounts().subscribe(data => this.discount = data[params['id']]);
     })
   }
 }

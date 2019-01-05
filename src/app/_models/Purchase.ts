@@ -3,3 +3,4 @@ export class Purchase {
   email: string;
   is_paid: boolean;
 }
+

@@ -1,5 +1,5 @@
 export class Performer {
-  id: number;
+  idPerformers: number;
   details: string;
-  cost: number;
+  costOfPersonnel: number;
 }

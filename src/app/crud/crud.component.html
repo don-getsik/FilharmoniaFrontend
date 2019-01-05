@@ -10,11 +10,6 @@
     <ng-template #elseBlockconcert><a class="nav-link" href="manage/Concert">Koncerty</a></ng-template>
   </li>
   <li class="nav-item">
-    <div *ngIf="this.currentUrl === '/manage/PieceOfMusic'; then thenBlockpieceofmusic else elseBlockpieceofmusic"></div>
-    <ng-template #thenBlockpieceofmusic><a class="nav-link active" href="manage/PieceOfMusic">Utwory</a></ng-template>
-    <ng-template #elseBlockpieceofmusic><a class="nav-link" href="manage/PieceOfMusic">Utwory</a></ng-template>
-  </li>
-  <li class="nav-item">
     <div *ngIf="this.currentUrl === '/manage/Performer'; then thenBlockperformers else elseBlockperformers"></div>
     <ng-template #thenBlockperformers><a class="nav-link active" href="manage/Performer">Wykonawcy</a></ng-template>
     <ng-template #elseBlockperformers><a class="nav-link" href="manage/Performer">Wykonawcy</a></ng-template>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConcertService} from '../../../crudServices/concert.service';
 import {PerformerService} from '../../../crudServices/performer.service';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {Concert} from '../../../_models/concert';
+import {PieceOfMusic} from '../../../_models/pieceOfMusic';
+import {PieceOfMusicService} from '../../../crudServices/piece-of-music.service';
+import {Performer} from '../../../_models/performer';
 
 @Component({
   selector: 'app-concert-edit',
@@ -12,39 +14,56 @@ import {Concert} from '../../../_models/concert';
 })
 export class ConcertEditComponent implements OnInit {
 
-  concert: Concert;
-  angForm: FormGroup;
+  concert: Concert = new Concert();
+  piece: PieceOfMusic;
+  repertoire: PieceOfMusic[] = [];
+  private performers: Performer[];
   constructor(private route: ActivatedRoute,
               private router: Router,
               private bs: ConcertService,
-              private fb: FormBuilder,
-              private ps: PerformerService) {
-    this.createForm();
+              private ps: PerformerService,
+              private ms: PieceOfMusicService) {
   }
 
-  createForm() {
-    this.angForm = this.fb.group({
-      performer: [0, Validators.required ],
-      organizationCosts: [0, Validators.required ],
-      title: ['', Validators.required ],
-      ticketCosts: ['', Validators.required ],
-      date: ['', Validators.required ]
-    });
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
   }
 
-  get f() { return this.angForm.controls; }
-
-  updateConcert(performer, title, organizationCosts, ticketCosts, date) {
-    this.bs.editConcert(this.concert.id, performer, title, parseFloat(organizationCosts), parseFloat(ticketCosts), new Date(date));
+  updateConcert() {
+    this.bs.editConcert(this.concert);
   }
 
-  getPerformers() {
-    return this.ps.getPerformers();
+  addToRepertoire () {
+    let ps = new PieceOfMusic();
+    ps.idPiece = this.repertoire.length+1;
+    this.repertoire.push(ps);
   }
 
+  deleteMusic(p: PieceOfMusic) {
+    let index = this.repertoire.indexOf(p);
+    this.repertoire.splice(index, 1);
+    for(let _i = 0; _i < this.repertoire.length; _i++) {
+      this.repertoire[_i].idPiece = _i + 1;
+    }
+  }
+
+  setMusic(pom: PieceOfMusic) {
+    this.piece = pom;
+  }
+
+  getPiecesOfMusic() {
+    this.ms.getPieceOfMusics();
+  }
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.concert = this.bs.getConcert(params['id']);
-    })
+      this.bs.getConcert(params['id']).subscribe(
+        data => {
+          this.concert = data;
+          this.repertoire = data.repertoire;},
+        error => console.log(error));
+    });
+
+    this.ps.getPerformers().subscribe(data => this.performers = data);
   }
 }

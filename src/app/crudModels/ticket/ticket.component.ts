@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TICKETS} from '../../_mock/ticket_mock';
+import {Ticket} from '../../_models/ticket';
+import {TicketService} from '../../crudServices/ticket.service';
 
 @Component({
   selector: 'app-ticket',
@@ -8,10 +9,11 @@ import {TICKETS} from '../../_mock/ticket_mock';
 })
 export class TicketComponent implements OnInit {
 
-  tickets = TICKETS;
-  constructor() { }
+  tickets: Ticket[];
+  constructor(private ts: TicketService) { }
 
   ngOnInit() {
+    this.tickets = this.ts.getTickets()
   }
 
 }

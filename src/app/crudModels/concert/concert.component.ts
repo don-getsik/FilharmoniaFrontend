@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {CONCERTS} from '../../_mock/concert_mock';
 import {Concert} from '../../_models/concert';
 import {ConcertService} from '../../crudServices/concert.service';
 
@@ -14,11 +13,11 @@ export class ConcertComponent implements OnInit {
   constructor(private cs: ConcertService) { }
 
   ngOnInit() {
-    this.concerts = this.cs.getConcerts();
+    this.cs.getConcerts().subscribe(data => this.concerts = data);
   }
 
   deleteConcert(c: Concert) {
-    this.cs.deleteConcert(c);
+    this.cs.deleteConcert(c.idConcert);
   }
 
 }

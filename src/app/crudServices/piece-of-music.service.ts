@@ -1,37 +1,25 @@
 import { Injectable } from '@angular/core';
 import {PieceOfMusic} from '../_models/pieceOfMusic';
-import {PIECEOFMUSICS} from '../_mock/pieceOfMusic_mock';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PieceOfMusicService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  pieceOfMusics: PieceOfMusic[] = PIECEOFMUSICS;
 
-  addPieceOfMusic(title: string, composer: string) {
-    let p: PieceOfMusic = {id: PIECEOFMUSICS.length, title:title, composer:composer};
-    this.pieceOfMusics.push(p);
+  editPieceOfMusic(p: PieceOfMusic) {
+    this.http.post("http://localhost:8081/admin/piece",p);
   }
 
-  editPieceOfMusic(id: number, title: string, composer: string) {
-    this.pieceOfMusics = this.pieceOfMusics.filter(e => e !== this.pieceOfMusics.find(e => e.id === id));
-    let p: PieceOfMusic = {id: id, title:title, composer:composer};
-    this.pieceOfMusics.push (p);
-  }
-
-  deletePieceOfMusic (p: PieceOfMusic) {
-    this.pieceOfMusics = this.pieceOfMusics.filter(e => e !== this.pieceOfMusics.find(e => e.id === p.id));
+  deletePieceOfMusic (id: number) {
+    this.http.delete("http://localhost:8081/admin/piece/"+id);
   }
 
   getPieceOfMusics () {
-    return this.pieceOfMusics;
-  }
-
-  getPieceOfMusic (id: number) {
-    return this.pieceOfMusics[id-1];
+    return this.http.get<PieceOfMusic[]>("http://localhost:8081/admin/piece");
   }
 }

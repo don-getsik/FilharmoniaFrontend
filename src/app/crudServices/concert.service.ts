@@ -1,43 +1,37 @@
 import { Injectable } from '@angular/core';
-import {Transaction} from '../_models/transaction';
-import {TRANSCTIONS} from '../_mock/budget_mock';
-import {Performer} from '../_models/performer';
 import {Concert} from '../_models/concert';
-import {CONCERTS} from '../_mock/concert_mock';
-import {CONCERTROOM} from '../_mock/concertRoom_mock';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from '../_services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConcertService {
 
-  constructor() {
+  constructor(private http: HttpClient, private as: AuthenticationService) {
   }
 
-  concerts: Concert[] = CONCERTS;
-
-  addConcert(performer: Performer, title: string, organizationCosts: number, ticketCosts: number, date: Date) {
-    let c: Concert = {id: CONCERTS.length, performer: performer, concertRoom: CONCERTROOM, title: title,
-      organizationCosts: organizationCosts, date: date, ticketCosts:ticketCosts};
-    this.concerts.push(c);
+  editConcert(c: Concert) {
+    this.http.post("http://localhost:8081/admin/concert", c);
   }
 
-  editConcert(id: number, performer: Performer, title: string, organizationCosts: number, ticketCosts: number, date: Date) {
-    this.concerts = this.concerts.filter(e => e !== this.concerts.find(e => e.id === id));
-    let c: Concert = {id: id, performer: performer, concertRoom: CONCERTROOM, title: title,
-      organizationCosts: organizationCosts, date: date, ticketCosts:ticketCosts};
-    this.concerts.push (c);
-  }
-
-  deleteConcert (c: Concert) {
-    this.concerts = this.concerts.filter(e => e !== this.concerts.find(e => e.id === c.id));
+  deleteConcert (id: number) {
+    return this.http.delete("http://localhost:8081/admin/concert/" +id);
   }
 
   getConcerts () {
-    return this.concerts;
+    return this.http.get<Concert[]>("http://localhost:8081/concert");
   }
 
   getConcert (id: number) {
-    return this.concerts[id-1];
+    return this.http.get<Concert>("http://localhost:8081/admin/concert/"+id);
+  }
+
+  getNotApprovedConcert () {
+    return this.http.get<Concert[]>("http://localhost:8081/concert/not-approved");
+  }
+
+  getApprovedConcert () {
+    return this.http.get<Concert[]>("http://localhost:8081/concert");
   }
 }

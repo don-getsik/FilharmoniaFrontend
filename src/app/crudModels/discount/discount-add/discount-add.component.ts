@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DiscountService} from '../../../crudServices/discount.service';
+import {Discount} from '../../../_models/discount';
 
 @Component({
   selector: 'app-discount-add',
@@ -9,23 +9,12 @@ import {DiscountService} from '../../../crudServices/discount.service';
 })
 export class DiscountAddComponent implements OnInit {
 
-
-  angForm: FormGroup;
-  constructor(private fb: FormBuilder, private bs: DiscountService) {
-    this.createForm();
+  private discount = new Discount();
+  constructor(private bs: DiscountService) {
   }
 
-  createForm() {
-    this.angForm = this.fb.group({
-      title: ['', Validators.required ],
-      percentage: ['', Validators.required ]
-    });
-  }
-
-  get f() { return this.angForm.controls; }
-
-  addDiscount(title, percentage) {
-    this.bs.addDiscount(title, percentage);
+  addDiscount() {
+    this.bs.editDiscount(this.discount);
   }
 
   ngOnInit() {

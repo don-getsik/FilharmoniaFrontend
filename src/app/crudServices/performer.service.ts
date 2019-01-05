@@ -1,38 +1,24 @@
 import { Injectable } from '@angular/core';
 import {Performer} from '../_models/performer';
-import {TRANSCTIONS} from '../_mock/budget_mock';
-import {PERFORMERS} from '../_mock/performer_mock';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerformerService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  performers: Performer[] = PERFORMERS;
-
-  addPerformer(cost: number, details: string) {
-    let p: Performer = {id: PERFORMERS.length, cost: cost, details: details};
-    this.performers.push(p);
+  editPerformer(cp: Performer) {
+    this.http.post("http://localhost:8081/admin/performer", cp);
   }
 
-  editPerformer(id: number, details: string, cost: number) {
-    this.performers = this.performers.filter(e => e !== this.performers.find(e => e.id === id));
-    let p: Performer = {id: id, cost: cost, details: details};
-    this.performers.push (p);
-  }
-
-  deletePerformer (p: Performer) {
-    this.performers = this.performers.filter(e => e !== this.performers.find(e => e.id === p.id));
+  deletePerformer (id: Performer) {
+    this.http.delete("http://localhost:8081/admin/performer/"+id);
   }
 
   getPerformers () {
-    return this.performers;
-  }
-
-  getPerformer (id: number) {
-    return this.performers[id-1];
+    return this.http.get<Performer[]>("http://localhost:8081/admin/performer");
   }
 }

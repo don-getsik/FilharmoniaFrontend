@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Seat} from '../_models/seat';
-import {SEATS} from '../_mock/seat_mock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeatService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  seats: Seat[] = SEATS;
-
-  getSeats () {
-    return this.seats;
-  }
-
-  getSeat (id: number) {
-    return this.seats[id-1];
+  getSeats (ConcertID: string){
+    console.log('http://localhost:8081/free-seat/'+ConcertID);
+    return this.http.get<Seat[]>('http://localhost:8081/free-seat/'+ConcertID);
   }
 }
