@@ -6,8 +6,8 @@
       <div class="card-body">
         <h3 class="card-title">{{c.concertTitle}}</h3>
         <h4>{{c.concertPerformers}}</h4>
-          <h5>Cena biletu: {{c.ticketCost}}zł </h5>
-          <h5>Koszty organizacji: {{c.additionalOrganisationCosts}}zł </h5>
+          <h5>Cena biletu: {{c.ticketCost}} zł </h5>
+          <h5>Koszty organizacji: {{c.additionalOrganisationCosts}} zł </h5>
           <h6  class="font-weight-light" *ngFor="let r of c.repertoire;">  {{r.title}}   </h6>
       </div>
       <div class="card-footer text-muted">

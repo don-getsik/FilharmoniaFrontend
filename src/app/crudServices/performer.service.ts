@@ -15,7 +15,7 @@ export class PerformerService {
   }
 
   deletePerformer (id: Performer) {
-    return this.http.delete("http://localhost:8081/admin/performer/"+id);
+    return this.http.delete("http://localhost:8081/admin/performer/"+id.idPerformers);
   }
 
   getPerformers () {

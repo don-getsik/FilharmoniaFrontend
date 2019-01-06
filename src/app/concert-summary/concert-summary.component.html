@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-3">
+    <h4>Koncerty:</h4>
     <div class="list-group">
       <ng-container *ngFor="let concert of concerts;let i = index;trackBy:trackByIndex;">
         <ng-container *ngIf="concert.idConcert == activeId; then thenBlockConSum else elseBlockConSum"> </ng-container>
@@ -38,19 +39,19 @@
       </tr>
       <tr>
         <th scope="row">Cena biletu</th>
-        <td>{{concert.ticketCost}}zł</td>
+        <td>{{concert.ticketCost}} zł</td>
       </tr>
       <tr>
         <th scope="row">Dodatkowe koszty koncertu</th>
-        <td>{{concert.additionalConcertOrganisationCosts}}zł</td>
+        <td>{{concert.additionalConcertOrganisationCosts}} zł</td>
       </tr>
       <tr>
         <th scope="row">Opłata wykonawncy</th>
-        <td>{{concert.performersCost}}zł</td>
+        <td>{{concert.performersCost}} zł</td>
       </tr>
       <tr>
         <th scope="row">Opłata sali koncertowej</th>
-        <td>{{concert.concertRoomRentalCost}}zł</td>
+        <td>{{concert.concertRoomRentalCost}} zł</td>
       </tr>
       <tr>
         <th scope="row">Ilość sprzedanych biletów</th>
@@ -58,7 +59,7 @@
       </tr>
       <tr>
         <th scope="row">Przychód ze sprzedaży biletów</th>
-        <td>{{concert.incomeFromTickets}}zł</td>
+        <td>{{concert.incomeFromTickets}} zł</td>
       </tr>
       </tbody>
     </table>
