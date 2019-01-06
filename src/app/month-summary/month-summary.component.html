@@ -1,0 +1,37 @@
+<h1 style="text-align: center">Posumowanie miesięczne</h1>
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item" *ngFor="let i of [7,6,5,4,3,2,1,0]">
+    <div *ngIf="this.nowId === i; then thenBlockMonth else elseBlockMonth"></div>
+    <ng-template #thenBlockMonth><a class="nav-link active" href="#">{{getDate(i)}}</a></ng-template>
+    <ng-template #elseBlockMonth><a class="nav-link" (click)="getSummary(i)">{{getDate(i)}}</a></ng-template>
+  </li>
+</ul>
+<br>
+<div *ngIf="monthSummary != null">
+  <h2 style="text-align: center">{{monthSummary.beginDate.substring(0,10)}} - {{monthSummary.endDate.substring(0,10)}}</h2>
+  <h3 style="text-align: center">Bilans: {{monthSummary.balance}}zł</h3>
+  <h4 style="text-align: center">Wszystkie zarobki: {{monthSummary.totalEarning}}zł Wszystkie wydatki: {{monthSummary.totalExpenses}}zł</h4>
+  <h3>Transakcje:</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Lp.</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Szczegóły</th>
+      <th scope="col">Kwota</th>
+      <th scope="col">Stan konta</th>
+      <th scope="col">Data</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let a of monthSummary.transactions">
+      <td>{{ monthSummary.transactions.indexOf(a) }}</td>
+      <td>{{a.titleTransaction}}</td>
+      <td>{{a.transactionDetails}}</td>
+      <td>{{a.transactionSum}}</td>
+      <td>{{a.amountAfterTransaction}}</td>
+      <td>{{a.date}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

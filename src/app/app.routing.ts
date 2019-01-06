@@ -19,11 +19,17 @@ import {PieceOfMusicComponent} from './crudModels/piece-of-music/piece-of-music.
 import {PieceOfMusicEditComponent} from './crudModels/piece-of-music/piece-of-music-edit/piece-of-music-edit.component';
 import {PieceOfMusicAddComponent} from './crudModels/piece-of-music/piece-of-music-add/piece-of-music-add.component';
 import {AproveConcertComponent} from './aprove-concert/aprove-concert.component';
+import {MonthSummaryComponent} from './month-summary/month-summary.component';
+import {ConcertSummaryComponent} from './concert-summary/concert-summary.component';
+import {PaymentCompleteComponent} from './payment-complete/payment-complete.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'approve', component: AproveConcertComponent, canActivate: [AuthGuard]},
+  {path: 'monthly', component: MonthSummaryComponent, canActivate: [AuthGuard]},
+  {path: 'concertSummary', component: ConcertSummaryComponent, canActivate: [AuthGuard]},
+  {path: 'payment-complete', component: PaymentCompleteComponent},
   {path: 'buy', component: BuyTicketComponent},
   {
     path: 'manage', component: CrudComponent, canActivate: [AuthGuard],

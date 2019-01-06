@@ -9,7 +9,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let concert of concerts">
+  <tr *ngFor="let concert of concerts;let i = index;trackBy:trackByIndex;">
     <th scope="row">{{concert.idConcert}}</th>
     <td>{{concert.concertPerformers}}</td>
     <td>{{concert.concertTitle}}</td>

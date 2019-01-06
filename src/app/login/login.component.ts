@@ -1,45 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {first} from 'rxjs/operators';
 
-import { AlertService, AuthenticationService } from '../_services';
+import {AlertService, AuthenticationService} from '../_services';
 import {Login} from '../_models/login';
 
-@Component({templateUrl: 'login.component.html',
-styleUrls: ['login.component.css']})
+@Component({
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.css']
+})
 export class LoginComponent implements OnInit {
-    loading = false;
-    submitted = false;
-    returnUrl: string;
-    private login: Login = new Login();
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService) {}
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  private login: Login = new Login();
 
-    ngOnInit() {
-        // reset login status
-        this.authenticationService.logout();
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService) {
+  }
 
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    }
+  ngOnInit() {
+    // reset login status
+    this.authenticationService.logout();
 
-    onSubmit() {
-        this.submitted = true;
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
 
-        this.loading = true;
-        console.log(this.login);
-        this.authenticationService.login(this.login)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
-    }
+  onSubmit() {
+    this.submitted = true;
+
+    this.loading = true;
+    this.authenticationService.login(this.login)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
+  }
 }

@@ -10,8 +10,8 @@ import {AlertService} from '../../../_services';
   styleUrls: ['./performer-edit.component.css']
 })
 export class PerformerEditComponent implements OnInit {
-
   performer: Performer = new Performer();
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private bs: PerformerService,
@@ -20,13 +20,13 @@ export class PerformerEditComponent implements OnInit {
 
   updatePerformer() {
     this.bs.editPerformer(this.performer).subscribe(data => window.location.href = 'http://localhost:4200/manage/Performer',
-      this.alertService.error);
+      error => this.alertService.error(error));
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.bs.getPerformers().subscribe(data => this.performer = data[params['id'] - 1],
-        this.alertService.error);
+        error => this.alertService.error(error));
     })
   }
 }

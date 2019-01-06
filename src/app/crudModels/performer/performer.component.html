@@ -8,7 +8,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let performer of performers">
+  <tr *ngFor="let performer of performers;let i = index;trackBy:trackByIndex;">
     <th scope="row">{{performer.idPerformers}}</th>
     <td>{{performer.details}}</td>
     <td>{{performer.costOfPersonnel}}</td>

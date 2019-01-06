@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './_services'
 import {Router} from '@angular/router';
+import {DemoService} from './_services/demo.service';
 
 @Component({
     selector: 'app',
@@ -9,7 +10,9 @@ import {Router} from '@angular/router';
 
 export class AppComponent { 
 
-    constructor (private Auth: AuthenticationService, private router: Router) {
+    constructor (private Auth: AuthenticationService,
+                 private router: Router,
+                 private ds: DemoService) {
     }
 
     isLoggedIn() {
@@ -32,4 +35,5 @@ export class AppComponent {
       this.Auth.logout();
       this.router.navigate(['']);
     }
+
 }

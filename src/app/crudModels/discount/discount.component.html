@@ -7,7 +7,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let discount of discounts">
+  <tr *ngFor="let discount of discounts;let i = index;trackBy:trackByIndex;">
     <td>{{discount.name}}</td>
     <td>{{discount.percents}}</td>
     <td><div class="btn-group" role="group" aria-label="Basic example">

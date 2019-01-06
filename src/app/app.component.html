@@ -1,17 +1,23 @@
 <!-- main app container -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">Filharmonia</a>
+    <a class="navbar-brand" href="">Filharmonia</a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="">Strona główna</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="concerts">Repertuar</a>
             </li>
             <li class="nav-item">
               <div *ngIf="isLoggedInAdmin()"><a class="nav-link" href="manage">Zarządzaj</a></div>
             </li>
+          <li *ngIf="isLoggedInAdmin()" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Podsumowania
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="monthly">Miesięczne</a>
+              <a class="dropdown-item" href="concertSummary">Koncertów</a>
+            </div>
+          </li>
           <li class="nav-item">
             <div *ngIf="isLoggedInApprover()"><a class="nav-link" href="approve">Zatwierdź koncerty</a></div>
           </li>

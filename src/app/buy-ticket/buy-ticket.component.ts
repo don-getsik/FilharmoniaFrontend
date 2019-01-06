@@ -28,6 +28,7 @@ export class BuyTicketComponent implements OnInit {
   private purchase: PurchaseTicket = new PurchaseTicket();
   private discounts: Discount[];
   private seats: TicketSeat[][];
+
   constructor(private ds: DiscountService,
               private ss: SeatService,
               private route: ActivatedRoute,
@@ -35,7 +36,6 @@ export class BuyTicketComponent implements OnInit {
               private alertService: AlertService) {
     this.purchase.tickets = [];
   }
-
 
   selectSeat(ts: TicketSeat) {
     if (ts.isSelected) {

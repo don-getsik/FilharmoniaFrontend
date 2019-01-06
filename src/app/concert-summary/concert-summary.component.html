@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-3">
+    <div class="list-group">
+      <ng-container *ngFor="let concert of concerts;let i = index;trackBy:trackByIndex;">
+        <ng-container *ngIf="concert.idConcert == activeId; then thenBlockConSum else elseBlockConSum"> </ng-container>
+        <ng-template #thenBlockConSum><button class="list-group-item list-group-item-action active"
+                                              (click)="setConcert(concert.idConcert)">
+          {{concert.concertTitle}}<br>{{concert.date}}</button></ng-template>
+        <ng-template #elseBlockConSum><button class="list-group-item list-group-item-action"
+                                              (click)="setConcert(concert.idConcert)">
+          {{concert.concertTitle}}<br>{{concert.date}}</button></ng-template>
+
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-9" *ngIf="concert != null">
+    <table class="table table-borderless table-hover">
+      <tbody>
+      <tr>
+        <th scope="row">Tytuł koncertu</th>
+        <td>{{concert.concertTitle}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Data</th>
+        <td>{{concert.date}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Sala koncertowa</th>
+        <td>{{concert.concertRoomName}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Adres sali koncertowej</th>
+        <td>{{concert.concertRoomAddress}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Wykonawca</th>
+        <td>{{concert.concertPerformers}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Cena biletu</th>
+        <td>{{concert.ticketCost}}zł</td>
+      </tr>
+      <tr>
+        <th scope="row">Dodatkowe koszty koncertu</th>
+        <td>{{concert.additionalConcertOrganisationCosts}}zł</td>
+      </tr>
+      <tr>
+        <th scope="row">Opłata wykonawncy</th>
+        <td>{{concert.performersCost}}zł</td>
+      </tr>
+      <tr>
+        <th scope="row">Opłata sali koncertowej</th>
+        <td>{{concert.concertRoomRentalCost}}zł</td>
+      </tr>
+      <tr>
+        <th scope="row">Ilość sprzedanych biletów</th>
+        <td>{{concert.amountOfTicketsSold}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Przychód ze sprzedaży biletów</th>
+        <td>{{concert.incomeFromTickets}}zł</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <h1 class="text-center">Koncerty do zatwierdzenia</h1>
-<div class="row justify-content-center" *ngFor="let c of concerts">
+<div class="row justify-content-center" *ngFor="let c of concerts;let i = index;trackBy:trackByIndex;">
   <div class="col-sm-7">
     <div class="card text-center">
       <div class="card-header"><h6>{{parseDate(c.date)}}</h6></div>

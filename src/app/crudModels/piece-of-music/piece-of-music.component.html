@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Lp.</th>
+    <th scope="col">Nazwa utworu</th>
+    <th scope="col">Kompozytor</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let pieceOfMusic of piecesOfMusic;let i = index;trackBy:trackByIndex;">
+    <td>{{pieceOfMusic.idPiece}}</td>
+    <td>{{pieceOfMusic.title}}</td>
+    <td>{{pieceOfMusic.composer}}</td>
+    <td><div class="btn-group" role="group" aria-label="Basic example">
+      <a class="btn btn-info btn-sm" [href]="'manage/Discount/edit/' + pieceOfMusic.idPiece">Edytuj</a>
+      <button type="button" class="btn btn-danger btn-sm" (click)="deleteDiscount(pieceOfMusic)">Usuń</button>
+    </div></td>
+  </tbody>
+</table>
+
+<a class="btn btn-success" href="manage/PieceOfMusic/add">Dodaj</a>

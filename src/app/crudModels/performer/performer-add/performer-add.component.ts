@@ -9,17 +9,15 @@ import {AlertService} from '../../../_services';
   styleUrls: ['./performer-add.component.css']
 })
 export class PerformerAddComponent implements OnInit {
-
-
   private performer: Performer = new Performer();
+
   constructor(private bs: PerformerService,
               private alertService: AlertService) {
   }
 
-
   addPerformer() {
     this.bs.editPerformer(this.performer).subscribe(data => window.location.href = 'http://localhost:4200/manage/Performer',
-      this.alertService.error);
+      error => this.alertService.error(error));
   }
 
   ngOnInit() {

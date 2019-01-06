@@ -11,6 +11,10 @@ export class PayPalService {
 
   makePayment (pt: PurchaseTicket) {
     this.http.post('http://localhost:8081/paypal/payment/make', pt, {responseType: 'text'}).subscribe(data => window.location.href = data.toString());
+  }
 
+  completePayment(id: string) {
+    console.log('http://localhost:8081/paypal/payment/complete'+id);
+    this.http.post('http://localhost:8081/paypal/payment/complete'+id, '').subscribe();
   }
 }

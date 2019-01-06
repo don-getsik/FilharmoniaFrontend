@@ -20,6 +20,7 @@ export class ConcertEditComponent implements OnInit {
   repertoire: PieceOfMusic[] = [];
   performers: Performer[];
   piecesOfMusic: PieceOfMusic[];
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private bs: ConcertService,

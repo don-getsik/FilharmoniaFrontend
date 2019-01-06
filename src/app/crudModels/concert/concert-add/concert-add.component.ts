@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, Validators} from '@angular/forms';
 import {ConcertService} from '../../../crudServices/concert.service';
 import {PerformerService} from '../../../crudServices/performer.service';
 import {PieceOfMusic} from '../../../_models/pieceOfMusic';
@@ -14,20 +13,18 @@ import {AlertService} from '../../../_services';
   styleUrls: ['./concert-add.component.css']
 })
 export class ConcertAddComponent implements OnInit {
-
-
   concert: Concert = new Concert();
   piece: PieceOfMusic;
   performers: Performer[];
   repertoire: PieceOfMusic[] =[];
   piecesOfMusic: PieceOfMusic[];
+
   constructor(private bs: ConcertService,
               private ps: PerformerService,
               private ms: PieceOfMusicService,
               private alertService: AlertService) {
     this.repertoire = [];
   }
-
 
   trackByIndex(index: number, obj: any): any {
     return index;

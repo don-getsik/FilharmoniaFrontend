@@ -19,7 +19,8 @@ export class SelectConcertComponent implements OnInit {
 
   concerts: Concert [];
   ngOnInit() {
-    this.bc.getApprovedConcert().subscribe(data => this.concerts = data, this.alertService.error);
+    this.bc.getApprovedConcert().subscribe(data => this.concerts = data,
+      error => this.alertService.error(error));
   }
 
 }

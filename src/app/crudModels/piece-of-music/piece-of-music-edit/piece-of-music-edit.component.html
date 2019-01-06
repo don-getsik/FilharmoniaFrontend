@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <label class="col-md-4">Nazwa utworu</label>
+        <input type="text" class="{{title.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               [(ngModel)] = "pieceOfMusic.title" name="name" id="name" required #title="ngModel"/>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Kompozytor</label>
+        <input type="number" class="{{composer.invalid ? 'form-control is-invalid' :'form-control is-valid' }}"
+               [(ngModel)] = "pieceOfMusic.composer" name="percents" id="percents" required #composer="ngModel"/>
+      </div>
+
+      <div class="form-group">
+        <button (click)="updatePieceOfMusic()" class="btn btn-primary"
+                [disabled]="title.invalid || composer.invalid">Zapisz zmiany</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -15,7 +15,7 @@ export class DiscountService {
   }
 
   deleteDiscount (id: string) {
-    this.http.delete<Discount[]>('http://localhost:8081/discount/'+id);
+    return this.http.delete<Discount[]>('http://localhost:8081/admin/discount/'+id);
   }
 
   getDiscounts () {

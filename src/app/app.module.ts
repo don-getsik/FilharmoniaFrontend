@@ -29,6 +29,9 @@ import { PieceOfMusicComponent } from './crudModels/piece-of-music/piece-of-musi
 import { PieceOfMusicEditComponent } from './crudModels/piece-of-music/piece-of-music-edit/piece-of-music-edit.component';
 import { PieceOfMusicAddComponent } from './crudModels/piece-of-music/piece-of-music-add/piece-of-music-add.component';
 import { AproveConcertComponent } from './aprove-concert/aprove-concert.component';
+import { MonthSummaryComponent } from './month-summary/month-summary.component';
+import { ConcertSummaryComponent } from './concert-summary/concert-summary.component';
+import { PaymentCompleteComponent } from './payment-complete/payment-complete.component';
 
 @NgModule({
     imports: [
@@ -58,7 +61,10 @@ import { AproveConcertComponent } from './aprove-concert/aprove-concert.componen
         PieceOfMusicComponent,
         PieceOfMusicEditComponent,
         PieceOfMusicAddComponent,
-        AproveConcertComponent
+        AproveConcertComponent,
+        MonthSummaryComponent,
+        ConcertSummaryComponent,
+        PaymentCompleteComponent
     ],
     providers: [
         AuthGuard,

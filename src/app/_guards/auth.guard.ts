@@ -9,9 +9,10 @@ export class AuthGuard implements CanActivate {
                 private authService: AuthenticationService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      console.log(window.location.href);
         if (this.authService.isLoggedAdmin()) {
           if(window.location.href.includes("http://localhost:4200/manage")) return true;
+          else if(window.location.href.includes("http://localhost:4200/monthly")) return true;
+          else if(window.location.href.includes("http://localhost:4200/concertSummary")) return true;
           else window.location.href = 'http://localhost:4200';
           return false;
         }

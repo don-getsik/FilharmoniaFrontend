@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Concert} from '../../_models/concert';
 import {ConcertService} from '../../crudServices/concert.service';
-import {PieceOfMusicService} from '../../crudServices/piece-of-music.service';
 import {AlertService} from '../../_services';
 
 @Component({
@@ -10,8 +9,8 @@ import {AlertService} from '../../_services';
   styleUrls: ['./concert.component.css']
 })
 export class ConcertComponent implements OnInit {
-
   concerts: Concert[];
+
   constructor(private cs: ConcertService,
               private alertService: AlertService) { }
 
@@ -19,12 +18,20 @@ export class ConcertComponent implements OnInit {
     return new Date(Date.parse(date.substring(0,23))).toLocaleString();
   }
 
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
+
   ngOnInit() {
-    this.cs.getConcerts().subscribe(data => this.concerts = data, this.alertService.error);
+    this.cs.getConcerts().subscribe(data => this.concerts = data,
+      error => this.alertService.error(error));
   }
 
   deleteConcert(c: Concert) {
-    this.cs.deleteConcert(c.idConcert);
+    this.cs.deleteConcert(c.idConcert).subscribe(data =>
+      this.alertService.success("Pomyślnie usunięto"),
+        error => this.alertService.error(error));
+    this.concerts.splice(this.concerts.indexOf(c), 1);
   }
 
 }
